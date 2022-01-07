@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 let month = [],
   internNames = [];
-
+let dloadFlag = 1;
 let feeDetailsGlobal = [];
 
 getMonthMap().then((data) => {
@@ -26,30 +26,49 @@ setInterval(async () => {
 
 async function fetchData(month) {
   let feeDetails = [];
-  getInternMap().then((internData) => {
-    internData.forEach((internName) => {
-      queryDatabase(internName.name, month).then((projectData) => {
-        if (projectData) {
-          feeDetails.push(projectData);
-        }
-      });
-    });
-    feeDetailsGlobal = feeDetails;
+  // getInternMap().then((internData) => {
+  //   internData.forEach((internName) => {
+  //     queryDatabase(internName.name, month).then((projectData) => {
+  //       if (projectData) {
+  //         feeDetails.push(projectData);
+  //       }
+  //     });
+  //   });
+  //   return feeDetails;
+  // });
+
+  const internData = await getInternMap();
+
+  internData.forEach(async (internName) => {
+    const projectData = await queryDatabase(internName.name, month);
+    if (projectData) {
+      console.log('Project data received');
+      feeDetails.push(projectData);
+    }
   });
+  return feeDetails;
 }
 
 app.post('/query-notion', async (req, res) => {
   const { monthSelected } = req.body;
-  fetchData(monthSelected);
-  console.log(await fetchData(monthSelected));
+  // fetchData(monthSelected).then(() => {
+  //   if (feeDetailsGlobal) {
+  //     res.redirect('/');
+  //     let timer = setTimeout(location.reload(), 4000);
+  //   }
+  // });
+  feeDetailsGlobal = await fetchData(monthSelected);
+
+  if (feeDetailsGlobal) {
+    res.redirect('/');
+  }
+
   console.log('FDG in POST', feeDetailsGlobal);
   console.log('POST VALUE: ' + monthSelected);
-
-  res.redirect('/');
 });
 
 app.get('/', (req, res) => {
-  res.render('index', { month, feeDetailsGlobal });
+  res.render('index', { month, feeDetailsGlobal, dloadFlag });
   console.log('FDG in / ', feeDetailsGlobal);
 });
 

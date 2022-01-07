@@ -25,8 +25,12 @@
       <section class="month-section">
         <form action="/query-notion" method="post" class="month-form">
           <div class="month-row">
-            <label for="month">Choose month: </label>
-            <select name="monthSelected" id="monthSelected">
+            <label for="month" class="month-label">Choose month: </label>
+            <select
+              name="monthSelected"
+              id="monthSelected"
+              class="month-options"
+            >
               <% month.forEach(query => { %>
               <option value="<%= query.name %>"><%= query.name %></option>
               <% }) %>
@@ -37,11 +41,20 @@
           </div>
         </form>
       </section>
-      <% if(feeDetailsGlobal) { %>
+      <% if(dloadFlag) { %>
+      <div class="download-button">
+        <button type="submit" class="btn btn-download-fd">
+          Download Details
+        </button>
+      </div>
+      <% } %> <% if(feeDetailsGlobal) { %>
       <section class="fee-details">
         <div class="card-holder">
           <% feeDetailsGlobal.forEach(internDetail => { %>
-          <div class="card">
+          <div
+            class="card"
+            id="<%=internDetail[0].name%>--<%=internDetail[0].month%>"
+          >
             <div class="card-header">
               <span>Name: </span>
               <span><%=internDetail[0].name%></span>
@@ -51,6 +64,12 @@
             </div>
             <div class="card-body">
               <table>
+                <thead>
+                  <tr>
+                    <th>Project Name</th>
+                    <th>Fee (Rs.)</th>
+                  </tr>
+                </thead>
                 <tbody>
                   <% for(let i = 1; i< internDetail.length; ++i) { %>
                   <tr>
@@ -63,14 +82,23 @@
             </div>
             <div class="card-total">
               <span>Total:</span>
-              <span><%=internDetail[0].total%></span>
+              <span>Rs. <%=internDetail[0].total%></span>
             </div>
-
-            <% }) %>
           </div>
+          <% }) %>
         </div>
       </section>
+      <% } %> <% if(dloadFlag && feeDetailsGlobal.length > 5) { %>
+      <div class="download-button">
+        <button type="submit" class="btn btn-download-fd">
+          Download Details
+        </button>
+      </div>
       <% } %>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <script src="index.js"></script>
   </body>
 </html>
