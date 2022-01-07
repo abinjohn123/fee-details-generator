@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="top-header">
+      <h1>hophead stub</h1>
+    </header>
+    <div class="container">
+      <section class="month-section">
+        <form action="/query-notion" method="post" class="month-form">
+          <div class="month-row">
+            <label for="month">Choose month: </label>
+            <select name="monthSelected" id="monthSelected">
+              <% month.forEach(query => { %>
+              <option value="<%= query.name %>"><%= query.name %></option>
+              <% }) %>
+            </select>
+            <button type="submit" class="btn btn-primary" id="get-data">
+              Get Data
+            </button>
+          </div>
+        </form>
+      </section>
+      <% if(feeDetailsGlobal) { %>
+      <section class="fee-details">
+        <div class="card-holder">
+          <% feeDetailsGlobal.forEach(internDetail => { %>
+          <div class="card">
+            <div class="card-header">
+              <span>Name: </span>
+              <span><%=internDetail[0].name%></span>
+              <hr />
+              <span>Details For:</span>
+              <span><%=internDetail[0].month%></span>
+            </div>
+            <div class="card-body">
+              <table>
+                <tbody>
+                  <% for(let i = 1; i< internDetail.length; ++i) { %>
+                  <tr>
+                    <td><%=internDetail[i].project%></td>
+                    <td><%=internDetail[i].fee%></td>
+                  </tr>
+                  <%} %>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-total">
+              <span>Total:</span>
+              <span><%=internDetail[0].total%></span>
+            </div>
+
+            <% }) %>
+          </div>
+        </div>
+      </section>
+      <% } %>
+    </div>
+  </body>
+</html>
