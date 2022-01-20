@@ -33,8 +33,9 @@ async function fetchData(month) {
   internData.forEach(async (internName) => {
     const projectData = await queryDatabase(internName.name, month);
     if (projectData) {
-      console.log('Project data received');
+      // console.log('Project data received');
       feeDetails.push(projectData);
+      console.log(projectData);
     }
   });
   return feeDetails;
@@ -167,10 +168,10 @@ app.post('/download-fee-details', async (req, res) => {
     <div class="card">
     <div class="card-header">
       <span>Name: </span>
-      <span>${internDetail[0].name}</span>
+      <span>${internDetail.name}</span>
       <hr />
       <span>Details For:</span>
-      <span>${internDetail[0].month}</span>
+      <span>${internDetail.month}</span>
     </div>
     <div class="card-body">
       <table>
@@ -182,11 +183,11 @@ app.post('/download-fee-details', async (req, res) => {
         </thead>
         <tbody>`;
 
-    for (let i = 1; i < internDetail.length; ++i) {
+    for (let i = 1; i < internDetail.projectDetails.length; ++i) {
       htmlString += `
           <tr>
-            <td>${internDetail[i].project}</td>
-            <td>${internDetail[i].fee}</td>
+            <td>${internDetail.projectDetails[i].project}</td>
+            <td>${internDetail.projectDetails[i].fee}</td>
           </tr> `;
     }
 
@@ -196,7 +197,7 @@ app.post('/download-fee-details', async (req, res) => {
     </div>
     <div class="card-total">
       <span>Total:</span>
-      <span>Rs. ${internDetail[0].total}</span>
+      <span>Rs. ${internDetail.total}</span>
     </div>
     <div class="card-footer">
     <span>hophead</span>
@@ -209,7 +210,7 @@ app.post('/download-fee-details', async (req, res) => {
     console.log('HTML2PNG');
 
     fs.writeFileSync(
-      `./Fee-Details/${internDetail[0].name}--Fee Details--${internDetail[0].month}.png`,
+      `./Fee-Details/${internDetail.name}--Fee Details--${internDetail.month}.png`,
       imageBuffer
     );
     // res.set('Content-Type', 'image/png');

@@ -15,6 +15,9 @@ async function getDatabase() {
 // Queries the database with an AND filter for intern name and month
 async function queryDatabase(internName, month) {
   let total = 0;
+  const internObject = new Object();
+  internObject.name = internName;
+  internObject.month = month;
   const response = await notion.databases.query({
     database_id: database_id,
     filter: {
@@ -43,10 +46,13 @@ async function queryDatabase(internName, month) {
         fee: option.properties['Fee (INR)'].number,
       };
     });
+    // console.log(result);
+    internObject.projectDetails = result;
+    internObject.total = total;
+    // result.unshift({ name: internName, month: month, total: total });
 
-    result.unshift({ name: internName, month: month, total: total });
-
-    return result;
+    // console.log(internObject);
+    return internObject;
   }
 }
 
