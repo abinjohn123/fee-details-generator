@@ -212,8 +212,6 @@ app.post('/download-fee-details', async (req, res) => {
       `./Fee-Details/${internDetail[0].name}--Fee Details--${internDetail[0].month}.png`,
       imageBuffer
     );
-    // res.set('Content-Type', 'image/png');
-    // res.send(imageBuffer);
   });
 
   res.redirect('/');
@@ -222,23 +220,12 @@ app.post('/download-fee-details', async (req, res) => {
 app.post('/query-notion', async (req, res) => {
   const { monthSelected } = req.body;
   dloadFlag = 1;
-  // fetchData(monthSelected).then(() => {
-  //   if (feeDetailsGlobal) {
-  //     res.redirect('/');
-  //     let timer = setTimeout(location.reload(), 4000);
-  //   }
-  // });
   feeDetailsGlobal = await fetchData(monthSelected);
-
   res.redirect('/');
-
-  // console.log('FDG in POST', feeDetailsGlobal);
-  // console.log('POST VALUE: ' + monthSelected);
 });
 
 app.get('/', (req, res) => {
   res.render('index', { month, feeDetailsGlobal, dloadFlag });
-  // console.log('FDG in / ', feeDetailsGlobal);
 });
 
 app.listen(process.env.PORT);
