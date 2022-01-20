@@ -3,8 +3,6 @@ const { response } = require('express');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const database_id = process.env.NOTION_DATABASE_ID;
 
-let InternMap = [];
-
 // Retrieves the database and displays entire content
 async function getDatabase() {
   const response = await notion.databases.retrieve({
@@ -39,13 +37,12 @@ async function queryDatabase(internName, month) {
 
   if (response.results.length !== 0) {
     const result = response.results.map((option) => {
+      total += Number(option.properties['Fee (INR)'].number);
       return {
         project: option.properties['Client Name'].title[0].text.content,
         fee: option.properties['Fee (INR)'].number,
       };
     });
-
-    for (let i = 0; i < result.length; ++i) total += Number(result[i].fee);
 
     result.unshift({ name: internName, month: month, total: total });
 

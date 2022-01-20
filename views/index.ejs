@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Hophead Stub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -31,7 +31,7 @@
               id="monthSelected"
               class="month-options"
             >
-              <% month.forEach(query => { %>
+              <% month.forEach((query, id, array) => { %>
               <option value="<%= query.name %>"><%= query.name %></option>
               <% }) %>
             </select>
@@ -42,11 +42,13 @@
         </form>
       </section>
       <% if(dloadFlag) { %>
-      <div class="download-button">
-        <button type="submit" class="btn btn-download-fd">
-          Download Details
-        </button>
-      </div>
+      <form action="/download-fee-details" method="post" class="download-fd">
+        <div class="download-button">
+          <button type="submit" class="btn btn-download-fd">
+            Download Details
+          </button>
+        </div>
+      </form>
       <% } %> <% if(feeDetailsGlobal) { %>
       <section class="fee-details">
         <div class="card-holder">
@@ -85,15 +87,18 @@
               <span>Rs. <%=internDetail[0].total%></span>
             </div>
           </div>
+
           <% }) %>
         </div>
       </section>
       <% } %> <% if(dloadFlag && feeDetailsGlobal.length > 5) { %>
-      <div class="download-button">
-        <button type="submit" class="btn btn-download-fd">
-          Download Details
-        </button>
-      </div>
+      <form action="/download-fee-details" method="post" class="download-fd">
+        <div class="download-button">
+          <button type="submit" class="btn btn-download-fd">
+            Download Details
+          </button>
+        </div>
+      </form>
       <% } %>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
