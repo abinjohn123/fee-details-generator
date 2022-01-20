@@ -95,6 +95,15 @@ hr {
   flex-direction: column;
   gap: 12px;
 }
+.details--input input.field-name {
+  font-family: 'Ubuntu', sans-serif;
+  border-bottom: 1px solid #868e96;
+  font-size: 16px;
+}
+
+.field-value {
+  padding: 2px;
+}
 
 .details--row {
   display: flex;
@@ -103,7 +112,10 @@ hr {
 }
 
 .field-name {
-  flex: 0 0 120px;
+  width: 120px;
+  border: none;
+  background-color: #e9ecef;
+  outline: none;
 }
 
 .btn-primary {
