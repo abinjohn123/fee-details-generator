@@ -53,12 +53,13 @@ hr {
 .main-block {
   padding: 36px;
   width: 100%;
+  position: relative;
+  /* background-color: peachpuff; */
 }
 
 .stub-title {
   margin-top: 20px;
   font-family: 'Sanchez', serif;
-  /* background-color: peachpuff; */
   width: 100%;
 
   display: flex;
@@ -139,10 +140,69 @@ hr {
 .payment-details tr td:nth-child(odd) {
   text-transform: uppercase;
 }
-.payment-details tr:nth-child(odd) {
+.alt-bg tr:nth-child(odd) {
   background-color: rgba(218, 219, 221, 0.3);
 }
 .payment-details td {
   /* border: 1px solid; */
   padding: 4px 8px 4px 4px;
+}
+
+/* ************************** */
+/* Project Details Design */
+/* ************************** */
+.stub-body {
+  margin-top: 20px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.project-details {
+  width: 100%;
+  border-collapse: collapse;
+}
+.project-details th {
+  background-color: #000;
+  color: #fff;
+}
+.project-details td,
+.project-details th {
+  border: 1px solid #495057;
+  padding: 4px;
+}
+.project-number {
+  width: 10%;
+}
+.project-fee {
+  width: 100px;
+}
+.total-box {
+  align-self: flex-end;
+  border-collapse: collapse;
+}
+
+.total-box th {
+  padding: 4px;
+  border-bottom: 2px solid #000;
+}
+
+.total-amount {
+  width: 100px;
+}
+
+/* ************************ */
+/* FOOTER STYLE */
+/* ************************ */
+
+.stub-footer {
+  position: absolute;
+  /* background-color: aqua; */
+  /* border-bottom: 3px solid #000; */
+  text-align: center;
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translate(0, -50%);
 }
