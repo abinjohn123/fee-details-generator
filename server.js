@@ -183,7 +183,7 @@ app.post('/download-fee-details', async (req, res) => {
         </thead>
         <tbody>`;
 
-    for (let i = 1; i < internDetail.projectDetails.length; ++i) {
+    for (let i = 0; i < internDetail.projectDetails.length; ++i) {
       htmlString += `
           <tr>
             <td>${internDetail.projectDetails[i].project}</td>
