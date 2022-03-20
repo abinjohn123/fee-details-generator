@@ -67,54 +67,6 @@ async function queryDatabase(internName, month) {
   }
 }
 
-// queryDatabase('Sarath C', 'February 2022').then((data) => {
-//   console.log(data);
-// });
-
-// Queries the database with an AND filter for intern name and month
-// async function queryDatabase(internName, month) {
-//   let total = 0;
-//   const internObject = new Object();
-//   internObject.name = internName;
-//   internObject.month = month;
-//   const response = await notion.databases.query({
-//     database_id: database_id,
-//     filter: {
-//       and: [
-//         {
-//           property: process.env.NOTION_MONTH_ID,
-//           select: {
-//             equals: month,
-//           },
-//         },
-//         {
-//           property: process.env.NOTION_ASSIGNED_TO_ID,
-//           select: {
-//             equals: internName,
-//           },
-//         },
-//       ],
-//     },
-//   });
-
-//   if (response.results.length !== 0) {
-//     const result = response.results.map((option) => {
-//       total += Number(option.properties['Fee (INR)'].number);
-//       return {
-//         project: option.properties['Client Name'].title[0].text.content,
-//         fee: option.properties['Fee (INR)'].number,
-//       };
-//     });
-//     // console.log(result);
-//     internObject.projectDetails = result;
-//     internObject.total = total;
-//     // result.unshift({ name: internName, month: month, total: total });
-
-//     // console.log(internObject);
-//     return internObject;
-//   }
-// }
-
 // Some deep voodo shit that reduces the large query result into a Id :  name object
 function notionPropertiesByID(properties) {
   return Object.values(properties).reduce((obj, property) => {
@@ -123,36 +75,7 @@ function notionPropertiesByID(properties) {
   }, {});
 }
 
-// Makes use of the voodo shit to retrieve all the intern ID; intern name pairs
-async function getInternMap() {
-  const response = await notion.databases.retrieve({
-    database_id,
-  });
-  return notionPropertiesByID(response.properties)[
-    process.env.NOTION_ASSIGNED_TO_ID
-  ].select.options.map((option) => {
-    // return option.name;
-    return { id: option.id, name: option.name };
-    // console.log({ id: option.id, name: option.name });
-  });
-}
-
-async function getMonthMap() {
-  const response = await notion.databases.retrieve({
-    database_id,
-  });
-
-  return notionPropertiesByID(response.properties)
-    [process.env.NOTION_MONTH_ID].select.options.map((option) => ({
-      id: option.id,
-      name: option.name,
-    }))
-    .reverse();
-}
-
 module.exports = {
-  getInternMap,
-  getMonthMap,
   queryDatabase,
   activeInternQuery,
 };
