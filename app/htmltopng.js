@@ -12,7 +12,8 @@ const htmltopng = async (html = ' ') => {
   });
 
   const content = await page.$('.card');
-  imageBuffer = await content.screenshot({ omitBackground: true });
+  // await page.addStyleTag({ path: 'app/fee-details-styles.css' });
+  imageBuffer = await content.screenshot({ omitBackground: false });
 
   await page.close();
   await browser.close();
