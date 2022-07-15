@@ -7,32 +7,15 @@ const { queryDatabase } = require('./notion');
 // ############################################
 // Selecting the month parameter to query the database
 // ############################################
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+function getDate() {
+  const now = new Date();
+  const monthISO = new Date(now.getFullYear(), now.getMonth() - 1);
+  const month = new Intl.DateTimeFormat('en-US', { month: 'long' }).format(
+    monthISO
+  );
 
-function checkDate() {
-  const fullDate = new Date();
-  const date = 15 || fullDate.getDate();
-  const month = months[fullDate.getMonth() - 1];
-  const year =
-    month === 'December' ? fullDate.getFullYear() - 1 : fullDate.getFullYear();
-
-  console.log(`Full Date: ${fullDate}`);
-
-  if (date === 15) generateFD(`${month} ${year}`);
-  else console.log('not today!');
+  const year = month === 'December' ? now.getFullYear() - 1 : now.getFullYear();
+  return `${month} ${year}`;
 }
 
 // ############################################
@@ -50,5 +33,4 @@ async function generateFD(month) {
   });
 }
 
-checkDate();
-const timer = setInterval(checkDate, 1000 * 60 * 60 * 24);
+generateFD(getDate());
