@@ -31,8 +31,6 @@ async function generateFD(month) {
 
     const imageBuffer = await htmltopng(returnTableHTML(obj));
 
-    console.log('HTML2PNG');
-
     fs.writeFileSync(
       `./Fee-Details/${obj.name}--Fee Details--${month}.png`,
       imageBuffer

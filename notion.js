@@ -63,6 +63,12 @@ async function queryDatabase(internName, month) {
       };
     });
 
+    total = Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0,
+    }).format(total);
+
     return [result, total];
   }
 }
