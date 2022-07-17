@@ -7,7 +7,7 @@ const { htmltopng } = require('./app/htmltopng');
 const fs = require('fs');
 
 // ############################################
-// Selecting the month parameter to query the database
+// Generating MONTH value to query database
 // ############################################
 function getMonth() {
   const now = new Date();
@@ -28,7 +28,6 @@ async function generateFD(month) {
 
   for (const obj of contractWorkersArray) {
     [obj.results, obj.total] = await queryDatabase(obj.name, month);
-
     const imageBuffer = await htmltopng(returnTableHTML(obj));
 
     fs.writeFileSync(
