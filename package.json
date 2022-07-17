@@ -4,24 +4,15 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "@azure/identity": "^2.0.4",
-    "@azure/msal-node": "^1.7.0",
-    "@microsoft/microsoft-graph-client": "^3.0.2",
     "@notionhq/client": "^0.4.9",
     "dotenv": "^10.0.0",
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "isomorphic-fetch": "^3.0.0",
-    "nodemailer": "^6.7.2",
     "puppeteer": "^13.5.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
   },
   "scripts": {
-    "start": "node server.js",
-    "devStart": "nodemon fee-generator.js",
-    "mailer": "nodemon mailer.js"
+    "devStart": "nodemon fee-generator.js"
   },
   "author": "",
   "license": "ISC"
