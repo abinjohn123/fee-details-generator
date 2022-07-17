@@ -16,5 +16,5 @@ I plan to take this further by adding functionalities to mail these summaries (I
 
 ## To-Do
 
-[] Feature to email the summaries to the contractors.
-[] Extend the app to generate pay stubs.
+[ ] Feature to email the summaries to the contractors.
+[ ] Extend the app to generate pay stubs.
