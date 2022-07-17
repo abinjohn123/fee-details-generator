@@ -1,5 +1,4 @@
 const { Client } = require('@notionhq/client');
-const { response } = require('express');
 const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const database_id = process.env.PROJECT_DATABASE_ID;
 const internDatabase_id = process.env.INTERN_DATABASE_ID;
