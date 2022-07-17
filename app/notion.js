@@ -12,7 +12,8 @@ async function getDatabase(database_id) {
   // return response;
 }
 
-// CHECK FOR ACTIVE CONTRACTORS AND CREATE OBJECTS
+// Check for active contractors and create objects
+// that has their name and email address.
 async function activeInternQuery() {
   const response = await notion.databases.query({
     database_id: internDatabase_id,
@@ -30,7 +31,7 @@ async function activeInternQuery() {
   }));
 }
 
-// QUERY PROJECT DATABASE TO GET FEE DETAILS
+// Query the project database to retrieve project details
 async function queryDatabase(internName, month) {
   let total = 0;
   const response = await notion.databases.query({
@@ -53,6 +54,9 @@ async function queryDatabase(internName, month) {
     },
   });
 
+  // Iterate over the returned project details
+  // to retrieve project name and fee for each.
+  // Also compute the total fee
   if (response.results.length !== 0) {
     const result = response.results.map((option) => {
       total += Number(option.properties['Fee (INR)'].number);
@@ -62,6 +66,7 @@ async function queryDatabase(internName, month) {
       };
     });
 
+    //Convert total to INR representation
     total = Intl.NumberFormat('en-IN', {
       style: 'currency',
       currency: 'INR',
