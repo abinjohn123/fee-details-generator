@@ -23,7 +23,7 @@ function getMonth() {
 // ############################################
 // Querying the databases
 // ############################################
-async function generateFD(month) {
+async function generateFeeDetails(month) {
   const contractWorkersArray = await activeInternQuery();
 
   for (const obj of contractWorkersArray) {
@@ -101,4 +101,4 @@ const returnTableHTML = function (CWObj) {
   return htmlString;
 };
 
-generateFD(getMonth());
+generateFeeDetails(getMonth());
