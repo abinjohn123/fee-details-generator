@@ -77,14 +77,6 @@ async function queryDatabase(internName, month) {
   }
 }
 
-// Some deep voodo shit that reduces the large query result into a Id :  name object
-function notionPropertiesByID(properties) {
-  return Object.values(properties).reduce((obj, property) => {
-    const { id, ...rest } = property;
-    return { ...obj, [id]: rest };
-  }, {});
-}
-
 module.exports = {
   queryDatabase,
   activeInternQuery,
