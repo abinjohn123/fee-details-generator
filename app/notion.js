@@ -3,15 +3,6 @@ const notion = new Client({ auth: process.env.NOTION_API_KEY });
 const database_id = process.env.PROJECT_DATABASE_ID;
 const internDatabase_id = process.env.INTERN_DATABASE_ID;
 
-// Retrieves the database and displays entire content
-async function getDatabase(database_id) {
-  const response = await notion.databases.retrieve({
-    database_id,
-  });
-  console.log(response);
-  // return response;
-}
-
 // Check for active contractors and create objects
 // that has their name and email address.
 async function activeInternQuery() {
