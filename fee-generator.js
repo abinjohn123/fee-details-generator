@@ -28,17 +28,18 @@ async function generateFeeDetails(month) {
 
   for (const obj of contractWorkersArray) {
     [obj.results, obj.total] = await queryDatabase(obj.name, month);
+    obj.monthYear = getMonth();
 
     if (!obj.results) continue;
 
-    console.log(obj.total);
+    console.log(obj);
 
-    const imageBuffer = await htmltopng(returnTableHTML(obj));
+    // const imageBuffer = await htmltopng(returnTableHTML(obj));
 
-    fs.writeFileSync(
-      `./Fee-Details/${obj.name}--Fee Details--${month}.png`,
-      imageBuffer
-    );
+    // fs.writeFileSync(
+    //   `./Fee-Details/${obj.name}--Fee Details--${month}.png`,
+    //   imageBuffer
+    // );
   }
 }
 
