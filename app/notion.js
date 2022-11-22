@@ -48,24 +48,24 @@ async function queryDatabase(internName, month) {
   // Iterate over the returned project details
   // to retrieve project name and fee for each.
   // Also compute the total fee
-  if (response.results.length !== 0) {
-    const result = response.results.map((option) => {
-      total += Number(option.properties['Fee (INR)'].number);
-      return {
-        project: option.properties['Client Name'].title[0].text.content,
-        fee: option.properties['Fee (INR)'].number,
-      };
-    });
+  if (response.results.length === 0) return [null];
 
-    //Convert total to INR representation
-    total = Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0,
-    }).format(total);
+  const result = response.results.map((option) => {
+    total += Number(option.properties['Fee (INR)'].number);
+    return {
+      project: option.properties['Client Name'].title[0].text.content,
+      fee: option.properties['Fee (INR)'].number,
+    };
+  });
 
-    return [result, total];
-  }
+  //Convert total to INR representation
+  total = Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(total);
+
+  return [result, total];
 }
 
 module.exports = {

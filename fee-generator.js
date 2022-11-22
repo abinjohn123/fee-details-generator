@@ -28,6 +28,11 @@ async function generateFeeDetails(month) {
 
   for (const obj of contractWorkersArray) {
     [obj.results, obj.total] = await queryDatabase(obj.name, month);
+
+    if (!obj.results) continue;
+
+    console.log(obj.total);
+
     const imageBuffer = await htmltopng(returnTableHTML(obj));
 
     fs.writeFileSync(
@@ -89,7 +94,7 @@ const returnTableHTML = function (CWObj) {
     </div>
     <div class="card-total">
       <span>Total:</span>
-      <span>Rs. ${CWObj.total}</span>
+      <span>${CWObj.total}</span>
     </div>
     <div class="card-footer">
     <span>hophead</span>
