@@ -44,6 +44,12 @@ async function generateFeeDetails(month) {
 }
 
 const returnTableHTML = function (CWObj) {
+  const totalFormatted = new Intl.NumberFormat('en-IN', {
+    style: 'currency',
+    currency: 'INR',
+    maximumFractionDigits: 0,
+  }).format(CWObj.total);
+
   let htmlString = `
     <!DOCTYPE html>
     <html>
@@ -95,7 +101,7 @@ const returnTableHTML = function (CWObj) {
     </div>
     <div class="card-total">
       <span>Total:</span>
-      <span>${CWObj.total}</span>
+      <span>${totalFormatted}</span>
     </div>
     <div class="card-footer">
     <span>hophead</span>

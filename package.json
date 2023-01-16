@@ -6,7 +6,8 @@
   "dependencies": {
     "@notionhq/client": "^0.4.9",
     "dotenv": "^10.0.0",
-    "puppeteer": "^13.5.1"
+    "puppeteer": "^13.5.1",
+    "readline-sync": "^1.4.10"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

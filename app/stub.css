@@ -1,0 +1,227 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Global */
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  color: #021912;
+  background-color: #f7f7f7;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  width: 50vw;
+  margin: 0 auto;
+}
+
+.light-border {
+  border: 1px solid #495057;
+}
+
+hr {
+  margin-top: 32px;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+}
+
+/* ####################### */
+/*      PAGE DESIGN */
+/* ####################### */
+
+.stub-page {
+  background-color: #fff;
+  height: 297mm;
+  width: 210mm;
+  /* margin: 25px auto 25px auto; */
+  display: flex;
+  border-radius: none;
+  justify-content: flex-start;
+}
+
+.left-block {
+  width: 12mm;
+  background-color: #000;
+}
+
+.main-block {
+  padding: 36px;
+  width: 100%;
+  position: relative;
+  /* background-color: peachpuff; */
+}
+
+.stub-title {
+  margin-top: 20px;
+  font-family: 'Sanchez', serif;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.stub-details {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  /* background-color: skyblue; */
+}
+
+.--text {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stub-title h1 {
+  letter-spacing: 4px;
+  font-size: 52px;
+  font-weight: 300;
+}
+
+.date {
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.--logo {
+  display: inline-block;
+  padding: 24px;
+  background-color: #000;
+  border-radius: 50%;
+  height: 65px;
+  width: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.--logo img {
+  width: 30px;
+}
+
+.stub-details h2 {
+  font-family: 'Sanchez', serif;
+  font-size: 28px;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+
+.stub-details h3 {
+  font-family: 'Sanchez', serif;
+  font-size: 16px;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  font-weight: 300;
+}
+
+.--address {
+  line-height: 1.3;
+}
+
+.icon {
+  height: 20px;
+}
+
+.--email {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: #021912;
+}
+
+.payment-details {
+  border-collapse: collapse;
+}
+
+.payment-details tr td:nth-child(odd) {
+  text-transform: capitalize
+}
+
+.alt-bg tr:nth-child(odd) {
+  background-color: rgba(218, 219, 221, 0.3);
+}
+
+.payment-details td {
+  /* border: 1px solid; */
+  padding: 4px 8px 4px 4px;
+}
+
+/* ************************** */
+/* Project Details Design */
+/* ************************** */
+.stub-body {
+  margin-top: 20px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-details {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.project-details th {
+  background-color: #000;
+  color: #fff;
+}
+
+.project-details td,
+.project-details th {
+  border: 1px solid #495057;
+  padding: 4px;
+}
+
+.project-number {
+  width: 10%;
+}
+
+.project-fee {
+  width: 100px;
+}
+
+.total-box {
+  align-self: flex-end;
+  border-collapse: collapse;
+}
+
+.total-box td {
+  padding: 4px;
+  min-width: 100px;
+}
+
+
+.total-amount {
+  border-top: 1px solid #000;
+  font-weight: 600;
+}
+
+/* ************************ */
+/* FOOTER STYLE */
+/* ************************ */
+
+.stub-footer {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translate(0, -50%);
+
+  display: flex;
+  justify-content: center;
+}

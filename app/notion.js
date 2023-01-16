@@ -57,14 +57,6 @@ async function queryDatabase(internName, month) {
       fee: option.properties['Fee (INR)'].number,
     };
   });
-
-  //Convert total to INR representation
-  total = Intl.NumberFormat('en-IN', {
-    style: 'currency',
-    currency: 'INR',
-    maximumFractionDigits: 0,
-  }).format(total);
-
   return [result, total];
 }
 
